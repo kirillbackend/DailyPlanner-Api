@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34723.18
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyPlanner.RestApi", "DailyPlanner-RestApi\DailyPlanner.RestApi.csproj", "{E4B7BA77-2CD0-45D9-969A-BEE17A0B4CA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DailyPlanner.Data", "..\DailyPlanner.Data\DailyPlanner.Data.csproj", "{FC821F8B-3DBD-461F-9496-7E7881FCA5BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DailyPlanner.Enums", "..\DailyPlanner.Enums\DailyPlanner.Enums.csproj", "{B0C7428C-ECA1-4F38-B270-A0828B6C69E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DailyPlanner.Services", "..\DailyPlanner.Services\DailyPlanner.Services.csproj", "{7B9DA7C7-9A71-433D-8C63-AC58E4C64001}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DailyPlanner.Model", "..\DailyPlanner.Model\DailyPlanner.Model.csproj", "{BABF9765-FB1D-47C6-9F79-50235E0C6837}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DailyPlanner.Facades", "..\DailyPlanner.Facades\DailyPlanner.Facades.csproj", "{F04D8E4C-1D19-490F-B18D-7505880303BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DailyPlanner.Localization", "..\DailyPlanner.Localization\DailyPlanner.Localization.csproj", "{F3C67203-D2D5-4142-94D4-E956F2C2B52D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E4B7BA77-2CD0-45D9-969A-BEE17A0B4CA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4B7BA77-2CD0-45D9-969A-BEE17A0B4CA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4B7BA77-2CD0-45D9-969A-BEE17A0B4CA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4B7BA77-2CD0-45D9-969A-BEE17A0B4CA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC821F8B-3DBD-461F-9496-7E7881FCA5BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC821F8B-3DBD-461F-9496-7E7881FCA5BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC821F8B-3DBD-461F-9496-7E7881FCA5BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC821F8B-3DBD-461F-9496-7E7881FCA5BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0C7428C-ECA1-4F38-B270-A0828B6C69E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0C7428C-ECA1-4F38-B270-A0828B6C69E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0C7428C-ECA1-4F38-B270-A0828B6C69E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0C7428C-ECA1-4F38-B270-A0828B6C69E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B9DA7C7-9A71-433D-8C63-AC58E4C64001}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B9DA7C7-9A71-433D-8C63-AC58E4C64001}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B9DA7C7-9A71-433D-8C63-AC58E4C64001}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B9DA7C7-9A71-433D-8C63-AC58E4C64001}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BABF9765-FB1D-47C6-9F79-50235E0C6837}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BABF9765-FB1D-47C6-9F79-50235E0C6837}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BABF9765-FB1D-47C6-9F79-50235E0C6837}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BABF9765-FB1D-47C6-9F79-50235E0C6837}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F04D8E4C-1D19-490F-B18D-7505880303BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F04D8E4C-1D19-490F-B18D-7505880303BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F04D8E4C-1D19-490F-B18D-7505880303BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F04D8E4C-1D19-490F-B18D-7505880303BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3C67203-D2D5-4142-94D4-E956F2C2B52D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3C67203-D2D5-4142-94D4-E956F2C2B52D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3C67203-D2D5-4142-94D4-E956F2C2B52D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3C67203-D2D5-4142-94D4-E956F2C2B52D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A034C6EB-0D7A-40A1-86F3-B6000D408135}
+	EndGlobalSection
+EndGlobal
