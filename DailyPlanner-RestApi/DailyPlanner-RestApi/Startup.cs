@@ -6,6 +6,7 @@ using DailyPlanner.Facades;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using DailyPlanner_RestApi.Middlewares;
 
 
 namespace DailyPlanner_RestApi
@@ -71,7 +72,7 @@ namespace DailyPlanner_RestApi
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
-            //app.UseCustomExceptionHandler();
+            app.UseCustomExceptionHandler();
 
             app.UseRouting();
             app.UseCors(_corsPolicyName);

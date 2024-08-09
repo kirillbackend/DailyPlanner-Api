@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="Autofac" Version="8.0.0" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="9.0.0" />
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.7" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.7" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
@@ -18,6 +19,12 @@
     <PackageReference Include="Serilog.Settings.Configuration" Version="8.0.2" />
     <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DailyPlanner.Enums\DailyPlanner.Enums.csproj" />
+    <ProjectReference Include="..\DailyPlanner.Model\DailyPlanner.Model.csproj" />
+    <ProjectReference Include="..\DailyPlanner.Services\DailyPlanner.Services.csproj" />
   </ItemGroup>
 
 </Project>

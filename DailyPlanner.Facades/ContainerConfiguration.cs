@@ -1,6 +1,5 @@
-﻿using Autofac.Core;
-using Autofac;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using Autofac;
+using DailyPlanner.Facades.Contracts;
 
 namespace DailyPlanner.Facades
 {
@@ -14,16 +13,10 @@ namespace DailyPlanner.Facades
             }
 
             builder.RegisterInstance(settings);
-            //builder.RegisterType<ValidatorFactory>().As<IValidatorFactory>();
 
-            //Data.ContainerConfiguration.RegisterTypes<CalendarDataContext>(builder, settings.DominoConnection);
-            //Localization.ContainerConfiguration.RegisterTypes(builder);
-            //Services.Common.ContainerConfiguration.RegisterTypes(builder);
+            Service.ContainerConfiguration.RegisterTypes(builder, settings);
 
-            //builder.RegisterType<ContextLocator>().AsSelf().InstancePerLifetimeScope();
-            //CalendarMapperFactory.Configure(builder);
-
-            //builder.RegisterType<AppointmentFacade>().As<IAppointmentFacade>();
+            builder.RegisterType<AuthFacade>().As<IAuthFacade>();
         }
     }
 }

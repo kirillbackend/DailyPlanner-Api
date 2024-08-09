@@ -1,16 +1,9 @@
 ﻿
+using DailyPlanner.Service;
+
 namespace DailyPlanner.Facades
 {
-    public class DailyPlannerFacadeSettings
+    public class DailyPlannerFacadeSettings : DailyPlannerServiceSettings
     {
-        public ConnectionSettings DailyPlannerConnection { get; set; }
-
-    }
-
-    public class ConnectionSettings
-    {
-        public string ConnectionString { get; set; }
-
-        public string DatabaseName { get; set; }
     }
 }
