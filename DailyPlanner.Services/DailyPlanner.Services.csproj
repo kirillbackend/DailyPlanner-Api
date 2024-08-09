@@ -20,4 +20,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DailyPlanner.Data\DailyPlanner.Data.csproj" />
+    <ProjectReference Include="..\DailyPlanner.Enums\DailyPlanner.Enums.csproj" />
+    <ProjectReference Include="..\DailyPlanner.Model\DailyPlanner.Model.csproj" />
+  </ItemGroup>
+
 </Project>
