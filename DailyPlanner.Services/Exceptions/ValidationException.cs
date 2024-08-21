@@ -1,9 +1,12 @@
-﻿
-namespace DailyPlanner.Facades.Exceptions
+﻿namespace DailyPlanner.Services.Exceptions
 {
     public class ValidationException : Exception
     {
-        public ValidationException(string message) : base(message) { }
+        public ValidationException(string message)
+            : base(message)
+        {
+        }
+
 
         public ValidationException(string message, string uiMessage = null,
             object validationSource = null)

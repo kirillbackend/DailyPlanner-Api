@@ -1,13 +1,7 @@
-﻿using DailyPlanner.Facades.Contracts;
-using DailyPlanner.Facades.Exceptions;
-using DailyPlanner.Model;
+﻿using DailyPlanner.Services.Contracts;
 using DailyPlanner.Services.Dtos;
-using DailyPlanner_RestApi.Models;
+using DailyPlanner.Services.Exceptions;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 
 namespace DailyPlanner_RestApi.Controllers
 {
@@ -16,24 +10,24 @@ namespace DailyPlanner_RestApi.Controllers
     public class AuthController : AbstractController
     {
         private readonly ApiSettings _settings;
-        private readonly IAuthFacade _authFacade;
+        private readonly IAuthService _authService;
 
-        public AuthController(ILogger<AuthController> logger, ApiSettings settings, IAuthFacade authFacade)
+        public AuthController(ILogger<AuthController> logger, ApiSettings settings, IAuthService authService)
             : base(logger)
         {
             _settings = settings;
-            _authFacade = authFacade;
+            _authService = authService;
         }
 
         [HttpPost]
         [Route("singUp")]
-        public async Task<IActionResult> SingUp([FromBody] SignUpModel model)
+        public async Task<IActionResult> SingUp([FromBody] SignUpDto model)
         {
             try
             {
                 Logger.LogInformation("AuthController.SingUp started");
 
-                await _authFacade.SignUp(new SignUpDto()
+                await _authService.SignUp(new SignUpDto()
                 {
                     Username = model.Username,
                     Password = model.Password,

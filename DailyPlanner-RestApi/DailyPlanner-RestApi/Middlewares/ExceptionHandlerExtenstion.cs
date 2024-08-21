@@ -1,4 +1,4 @@
-﻿using DailyPlanner.Facades.Exceptions;
+﻿using DailyPlanner.Services.Exceptions;
 using System.Net;
 
 namespace DailyPlanner_RestApi.Middlewares

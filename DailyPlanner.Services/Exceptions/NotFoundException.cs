@@ -1,5 +1,4 @@
-﻿
-namespace DailyPlanner.Facades.Exceptions
+﻿namespace DailyPlanner.Services.Exceptions
 {
     public class NotFoundException : Exception
     {

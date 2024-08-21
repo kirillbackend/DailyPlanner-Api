@@ -1,8 +1,8 @@
-﻿using DailyPlanner.Facades;
+﻿using DailyPlanner.Service;
 
 namespace DailyPlanner_RestApi
 {
-    public class ApiSettings : DailyPlannerFacadeSettings
+    public class ApiSettings : DailyPlannerServiceSettings
     {
         public string[] AllowedOrigins { get; set; }
         public JwtSettings Auth { get; set; }

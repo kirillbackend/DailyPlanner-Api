@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using DailyPlanner.Facades.Exceptions;
+using DailyPlanner.Services.Exceptions;
 
 namespace DailyPlanner_RestApi.Controllers
 {
