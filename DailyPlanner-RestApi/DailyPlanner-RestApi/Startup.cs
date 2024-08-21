@@ -2,11 +2,11 @@
 using Newtonsoft.Json.Converters;
 using Autofac;
 using Serilog;
-using DailyPlanner.Facades;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using DailyPlanner_RestApi.Middlewares;
+using DailyPlanner.Service;
 
 
 namespace DailyPlanner_RestApi

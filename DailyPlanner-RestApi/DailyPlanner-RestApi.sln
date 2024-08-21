@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyPlanner.Enums", "..\Da
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyPlanner.Model", "..\DailyPlanner.Model\DailyPlanner.Model.csproj", "{BABF9765-FB1D-47C6-9F79-50235E0C6837}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyPlanner.Facades", "..\DailyPlanner.Facades\DailyPlanner.Facades.csproj", "{F04D8E4C-1D19-490F-B18D-7505880303BA}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyPlanner.Localization", "..\DailyPlanner.Localization\DailyPlanner.Localization.csproj", "{F3C67203-D2D5-4142-94D4-E956F2C2B52D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyPlanner.Services", "..\DailyPlanner.Services\DailyPlanner.Services.csproj", "{A837BA44-7CA3-4562-902E-D3CD79724248}"
@@ -39,10 +37,6 @@ Global
 		{BABF9765-FB1D-47C6-9F79-50235E0C6837}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BABF9765-FB1D-47C6-9F79-50235E0C6837}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BABF9765-FB1D-47C6-9F79-50235E0C6837}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F04D8E4C-1D19-490F-B18D-7505880303BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F04D8E4C-1D19-490F-B18D-7505880303BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F04D8E4C-1D19-490F-B18D-7505880303BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F04D8E4C-1D19-490F-B18D-7505880303BA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F3C67203-D2D5-4142-94D4-E956F2C2B52D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F3C67203-D2D5-4142-94D4-E956F2C2B52D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3C67203-D2D5-4142-94D4-E956F2C2B52D}.Release|Any CPU.ActiveCfg = Release|Any CPU
