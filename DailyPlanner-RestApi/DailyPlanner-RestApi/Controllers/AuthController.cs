@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace DailyPlanner_RestApi.Controllers
 {
     [Route("api/[controller]")]
+
     [ApiController]
     public class AuthController : AbstractController
     {
@@ -21,7 +22,7 @@ namespace DailyPlanner_RestApi.Controllers
 
         [HttpPost]
         [Route("singUp")]
-        public async Task<IActionResult> SingUp([FromBody] SignUpDto model)
+        public async Task<IActionResult> SingUp(SignUpDto model)
         {
             try
             {

@@ -1,17 +1,22 @@
 ﻿using DailyPlanner.Services.Mappers.Contracts;
 using Microsoft.Extensions.Logging;
+using DailyPlanner.Data.Contracts;
 
 namespace DailyPlanner.Service
 {
-    public class AbstractService 
+    public abstract class AbstractService 
     {
         public ILogger Logger { get; }
 
         public IMapperFactory MapperFactory { get; }
 
-        public AbstractService(ILogger logger)
+        public IDailyPlannerDataContextManager DataContextManager { get; }
+
+        public AbstractService(ILogger logger, IMapperFactory mapperFactory, IDailyPlannerDataContextManager dataContextManager)
         {
             Logger = logger;
+            MapperFactory = mapperFactory;
+            DataContextManager = dataContextManager;
         }
     }
 }

@@ -1,8 +1,9 @@
-﻿
+﻿using DailyPlanner.Data;
+
 namespace DailyPlanner.Service
 {
-    public class DailyPlannerServiceSettings
+    public class DailyPlannerServiceSettings : DailyPlannerDataSettings
     {
-        public ConnectionSettings DailyPlannerConnection { get; set; }
+
     }
 }

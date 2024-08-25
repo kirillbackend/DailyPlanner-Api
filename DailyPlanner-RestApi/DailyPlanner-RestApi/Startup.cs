@@ -31,9 +31,9 @@ namespace DailyPlanner_RestApi
             services.AddControllers(options =>
             {
                 //todo: add action filters
-                //options.Filters.Add<LocaleActionFilter>();
+                //settings.Filters.Add<LocaleActionFilter>();
 
-                //options.Filters.Add<OrganizationActionFilter>();
+                //settings.Filters.Add<OrganizationActionFilter>();
             })
             .AddNewtonsoftJson(options =>
             {
@@ -94,8 +94,8 @@ namespace DailyPlanner_RestApi
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            var options = _configuration.Get<ApiSettings>();
-            ContainerConfiguration.RegisterTypes(builder, options);
+            var settings = _configuration.Get<ApiSettings>();
+            ContainerConfiguration.RegisterTypes(builder, settings);
 
 
             //todo add action filters
