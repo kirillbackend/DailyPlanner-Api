@@ -23,6 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\DailyPlanner.Data\DailyPlanner.Data.csproj" />
     <ProjectReference Include="..\DailyPlanner.Enums\DailyPlanner.Enums.csproj" />
+    <ProjectReference Include="..\DailyPlanner.Localization\DailyPlanner.Localization.csproj" />
     <ProjectReference Include="..\DailyPlanner.Model\DailyPlanner.Model.csproj" />
   </ItemGroup>
 
