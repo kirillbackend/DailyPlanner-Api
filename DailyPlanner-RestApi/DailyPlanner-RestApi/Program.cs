@@ -1,3 +1,4 @@
+using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using DailyPlanner_RestApi;
 using Serilog;
@@ -10,6 +11,7 @@ namespace DailyPlanner.RestApi
         {
             var host = Host.CreateDefaultBuilder(args)
               .UseServiceProviderFactory(new AutofacServiceProviderFactory())
+              .ConfigureContainer<ContainerBuilder>((context, builder) => { })
               .ConfigureAppConfiguration((hostingContext, config) => {
                   var env = hostingContext.HostingEnvironment;
                   config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)

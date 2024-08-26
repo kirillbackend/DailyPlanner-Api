@@ -2,6 +2,7 @@
 {
     public interface IDailyPlannerDataContextManager
     {
-        DailyPlannerDataContext Create();
+        TRepository CreateRepository<TRepository>(string id = "default")
+           where TRepository : class, IRepository;
     }
 }

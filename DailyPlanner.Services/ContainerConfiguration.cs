@@ -21,7 +21,7 @@ namespace DailyPlanner.Service
 
            builder.RegisterType<AuthService>().As<IAuthService>();
 
-            Data.ContainerConfiguration.RegisterTypes(builder, settings);
+            Data.ContainerConfiguration.RegisterTypes(builder, settings.ConnectionStrings);
         }
     }
 }
