@@ -13,20 +13,18 @@ namespace DailyPlanner_RestApi
 {
     public class Startup
     {
-        private readonly string _corsPolicyName = "DailyPlannerCorsPolicy";
-        private readonly IWebHostEnvironment _webHostEnvironment;
-        private readonly IConfiguration _configuration;
-        private ILifetimeScope _autofacContainer;
+        private readonly string _corsPolicyName = "_Origins";
+        public IConfiguration Configuration { get; private set; }
+        public ILifetimeScope AutofacContainer { get; private set; }
 
-        public Startup(IConfiguration configuration, IWebHostEnvironment webHostEnvironment)
+        public Startup(IConfiguration configuration)
         {
-            _configuration = configuration;
-            _webHostEnvironment = webHostEnvironment;
+            Configuration = configuration;
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            var settings = _configuration.Get<ApiSettings>();
+            var settings = BuildOptions();
 
             services.AddControllers(options =>
             {
@@ -40,34 +38,34 @@ namespace DailyPlanner_RestApi
                 options.SerializerSettings.Converters.Add(new StringEnumConverter());
             });
 
-            services.AddCors(options =>
-            {
-                options.AddPolicy(_corsPolicyName, builder =>
-                {
-                    builder.WithOrigins(settings.AllowedOrigins)
-                        .AllowAnyMethod()
-                        .AllowAnyHeader()
-                        .AllowCredentials();
-                });
-            });
+            //services.AddCors(options =>
+            //{
+            //    options.AddPolicy(_corsPolicyName, builder =>
+            //    {
+            //        builder.WithOrigins(settings.AllowedOrigins)
+            //            .AllowAnyMethod()
+            //            .AllowAnyHeader()
+            //            .AllowCredentials();
+            //    });
+            //});
 
-            services.AddAuthentication()
-            .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
-            {
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
-                    ValidIssuer = "https://localhost:5001",
-                    ValidAudience = "https://localhost:5001",
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(settings.Auth.Secret))
-                };
-            });
+            //services.AddAuthentication()
+            //.AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+            //{
+            //    options.TokenValidationParameters = new TokenValidationParameters
+            //    {
+            //        ValidateIssuer = true,
+            //        ValidateAudience = true,
+            //        ValidateLifetime = true,
+            //        ValidateIssuerSigningKey = true,
+            //        ValidIssuer = "https://localhost:5001",
+            //        ValidAudience = "https://localhost:5001",
+            //        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(settings.Auth.Secret))
+            //    };
+            //});
 
             services.AddSerilog();
-
+            services.AddCors();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
@@ -86,7 +84,7 @@ namespace DailyPlanner_RestApi
 
             if (app is not null)
             {
-                _autofacContainer = app.ApplicationServices.GetAutofacRoot();
+                AutofacContainer = app.ApplicationServices.GetAutofacRoot();
             }
 
             loggerFactory.AddSerilog();
@@ -94,7 +92,7 @@ namespace DailyPlanner_RestApi
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            var settings = _configuration.Get<ApiSettings>();
+            var settings = BuildOptions();
             ContainerConfiguration.RegisterTypes(builder, settings);
 
 
@@ -103,5 +101,14 @@ namespace DailyPlanner_RestApi
             //builder.RegisterType<OrganizationActionFilter>().AsSelf();
             //builder.RegisterType<ExceptionHandler>().AsSelf();
         }
+
+        #region private metods
+
+        private ApiSettings BuildOptions()
+        {
+            return Configuration.Get<ApiSettings>();
+        }
+
+        #endregion
     }
 }

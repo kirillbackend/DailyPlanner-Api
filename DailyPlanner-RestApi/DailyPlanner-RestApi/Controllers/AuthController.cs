@@ -5,7 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DailyPlanner_RestApi.Controllers
 {
-    [Route("api/[controller]")]
+    //[Route("api/[controller]")]
+    [Route("test")]
 
     [ApiController]
     public class AuthController : AbstractController
@@ -21,21 +22,22 @@ namespace DailyPlanner_RestApi.Controllers
         }
 
         [HttpPost]
-        [Route("singUp")]
+        //[Route("singUp")]
+        //public async Task<IActionResult> SingUp(SignUpDto model)
         public async Task<IActionResult> SingUp(SignUpDto model)
         {
             try
             {
                 Logger.LogInformation("AuthController.SingUp started");
 
-                await _authService.SignUp(new SignUpDto()
-                {
-                    Username = model.Username,
-                    Password = model.Password,
-                });
+                //await _authService.SignUp(new SignUpDto()
+                //{
+                //    Username = model.Username,
+                //    Password = model.Password,
+                //});
 
                 Logger.LogInformation("AuthController.SingUp completed; success");
-                return Ok();
+                return Ok("test ok");
             }
             catch (ValidationException ex)
             {

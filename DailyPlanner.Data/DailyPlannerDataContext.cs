@@ -1,28 +1,38 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using DailyPlanner.Model;
+using DailyPlanner.Service;
 
 namespace DailyPlanner.Data
 {
     public class DailyPlannerDataContext : DbContext
     {
         protected readonly IConfiguration Configuration;
-        private readonly DailyPlannerDataSettings _settings;
+        private readonly ConnectionSettings _settings;
 
-        public DailyPlannerDataContext(IConfiguration configuration, DailyPlannerDataSettings settings)
+        public DailyPlannerDataContext(DbContextOptions<DailyPlannerDataContext> options, IConfiguration configuration, ConnectionSettings settings)
+            : base(options)
         {
-            Configuration = configuration;
             _settings = settings;
+            Configuration = configuration;
         }
 
-        public DailyPlannerDataContext(DailyPlannerDataSettings settings)
+        public DailyPlannerDataContext(ConnectionSettings settings)
         {
             _settings = settings;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlServer(Configuration.GetConnectionString(_settings.DailyPlannerDatabase.ConnectionString));
+            options.UseSqlServer(Configuration.GetConnectionString(_settings.MSSQLDatabase));
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<SignUpModel>(builder =>
+            {
+                builder.ToTable("SignUpModel");
+            });
         }
 
         public DbSet<SignUpModel> SignUpModels { get; set; }
