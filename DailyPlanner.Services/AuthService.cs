@@ -26,7 +26,7 @@ namespace DailyPlanner.Services
             var signUpModel = new SignUpModel()
             {
                 Username = signUpDto.Username,
-                Password = 
+                Password = signUpDto.Password
             };
             repo.Add(signUpModel);
 

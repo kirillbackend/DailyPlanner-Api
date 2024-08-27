@@ -26,19 +26,21 @@ namespace DailyPlanner.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlServer(Configuration.GetConnectionString(_settings.MSSQLDatabase));
+            //var connect = "Data Source=localhost; Database=DailyPlanner; User Id=Admin; Password=GhbynBuhs1; TrustServerCertificate=true;";
+            //options.UseSqlServer(connect);
+          options.UseSqlServer(Configuration.GetConnectionString(_settings.MSSQLDatabase));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
             modelBuilder.ApplyConfiguration(new SignUpModelMap());
-            modelBuilder.ApplyConfiguration(new SignUpModelMap());
+            //modelBuilder.ApplyConfiguration(new SignUpModelMap());
 
 
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(DailyPlannerDataContext).Assembly);
+            //modelBuilder.ApplyConfigurationsFromAssembly(typeof(DailyPlannerDataContext).Assembly);
 
-            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            //modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
 
         public DbSet<SignUpModel> SignUpModels { get; set; }
