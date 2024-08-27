@@ -3,7 +3,7 @@ using DailyPlanner.Services.Exceptions;
 
 namespace DailyPlanner_RestApi.Controllers
 {
-    public class AbstractController : ControllerBase
+    public abstract class AbstractController : ControllerBase
     {
         public ILogger Logger { get; set; }
 
