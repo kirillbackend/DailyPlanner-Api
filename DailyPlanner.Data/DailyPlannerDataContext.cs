@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using DailyPlanner.Model;
 using DailyPlanner.Service;
+using DailyPlanner.Data.Mapping;
+using System.Reflection;
 
 namespace DailyPlanner.Data
 {
@@ -29,10 +31,14 @@ namespace DailyPlanner.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<SignUpModel>(builder =>
-            {
-                builder.ToTable("SignUpModel");
-            });
+
+            modelBuilder.ApplyConfiguration(new SignUpModelMap());
+            modelBuilder.ApplyConfiguration(new SignUpModelMap());
+
+
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(DailyPlannerDataContext).Assembly);
+
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
 
         public DbSet<SignUpModel> SignUpModels { get; set; }

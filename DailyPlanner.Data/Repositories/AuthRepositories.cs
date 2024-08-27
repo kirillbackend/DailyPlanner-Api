@@ -1,13 +1,20 @@
 ﻿using DailyPlanner.Data.Repositories.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DailyPlanner.Model;
 
 namespace DailyPlanner.Data.Repositories
 {
-    public class AuthRepositories : IAuthRepositories
+    public class AuthRepositories : AbstractRepository<SignUpModel>, IAuthRepositories
     {
+        public AuthRepositories(DailyPlannerDataContext context)
+            : base(context)
+        {
+
+        }
+
+        public void Add(SignUpModel entity)
+        {
+            Context.Add(entity);
+            Context.SaveChanges();
+        }
     }
 }
