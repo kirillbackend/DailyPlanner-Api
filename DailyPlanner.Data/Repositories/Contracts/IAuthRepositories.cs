@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using DailyPlanner.Data.Contracts;
+using DailyPlanner.Model;
 
 namespace DailyPlanner.Data.Repositories.Contracts
 {
-    public interface IAuthRepositories
+    public interface IAuthRepositories : IRepository
     {
+       void Add(SignUpModel entity);
     }
 }

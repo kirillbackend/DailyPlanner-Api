@@ -9,7 +9,8 @@ namespace DailyPlanner.Services.Mappers
 
         public static void Configure(ContainerBuilder builder)
         {
-            
+            builder.RegisterType<AuthMapper>().As<IAuthMapper>().SingleInstance();
+
             // self-register
             builder.RegisterType<MapperFactory>().As<IMapperFactory>().SingleInstance();
         }

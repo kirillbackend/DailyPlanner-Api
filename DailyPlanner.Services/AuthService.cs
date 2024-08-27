@@ -1,4 +1,6 @@
 ﻿using DailyPlanner.Data.Contracts;
+using DailyPlanner.Data.Repositories.Contracts;
+using DailyPlanner.Model;
 using DailyPlanner.Service;
 using DailyPlanner.Services.Contracts;
 using DailyPlanner.Services.Dtos;
@@ -16,7 +18,19 @@ namespace DailyPlanner.Services
 
         public async Task SignUp(SignUpDto signUpDto)
         {
+            Logger.LogInformation("AuthService.SignUp started");
 
+            var repo = DataContextManager.CreateRepository<IAuthRepositories>();
+            var signUpMapper = MapperFactory.GetMapper<IAuthMapper>();
+
+            var signUpModel = new SignUpModel()
+            {
+                Username = signUpDto.Username,
+                Password = 
+            };
+            repo.Add(signUpModel);
+
+            Logger.LogInformation("AuthService.SignUp completed");
         }
     }
 }
