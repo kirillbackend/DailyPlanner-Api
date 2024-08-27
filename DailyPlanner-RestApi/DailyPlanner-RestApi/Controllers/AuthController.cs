@@ -5,36 +5,31 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DailyPlanner_RestApi.Controllers
 {
-    //[Route("api/[controller]")]
-    [Route("test")]
-
+    [Route("api/[controller]")]
     [ApiController]
     public class AuthController : AbstractController
     {
-        private readonly ApiSettings _settings;
         private readonly IAuthService _authService;
 
-        public AuthController(ILogger<AuthController> logger, ApiSettings settings, IAuthService authService)
+        public AuthController(ILogger<AuthController> logger, IAuthService authService)
             : base(logger)
         {
-            _settings = settings;
             _authService = authService;
         }
 
         [HttpPost]
-        //[Route("singUp")]
-        //public async Task<IActionResult> SingUp(SignUpDto model)
+        [Route("singUp")]
         public async Task<IActionResult> SingUp(SignUpDto model)
         {
             try
             {
                 Logger.LogInformation("AuthController.SingUp started");
 
-                //await _authService.SignUp(new SignUpDto()
-                //{
-                //    Username = model.Username,
-                //    Password = model.Password,
-                //});
+                await _authService.SignUp(new SignUpDto()
+                {
+                    Username = model.Username,
+                    Password = model.Password,
+                });
 
                 Logger.LogInformation("AuthController.SingUp completed; success");
                 return Ok("test ok");

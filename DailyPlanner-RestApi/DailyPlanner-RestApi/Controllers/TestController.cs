@@ -2,7 +2,7 @@
 
 namespace DailyPlanner_RestApi.Controllers
 {
-    [Route("test")]
+    [Route("api/[controller]")]
     [ApiController]
     public class TestController : ControllerBase
     {
@@ -13,7 +13,7 @@ namespace DailyPlanner_RestApi.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok("Profit!!");
+            return Ok("pass");
         }
     }
 }

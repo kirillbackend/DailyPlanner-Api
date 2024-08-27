@@ -1,12 +1,10 @@
 ﻿using Autofac.Extensions.DependencyInjection;
+using DailyPlanner_RestApi.Middlewares;
 using Newtonsoft.Json.Converters;
+using DailyPlanner.Service;
 using Autofac;
 using Serilog;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using DailyPlanner_RestApi.Middlewares;
-using DailyPlanner.Service;
+using Azure.Identity;
 
 
 namespace DailyPlanner_RestApi
@@ -14,12 +12,14 @@ namespace DailyPlanner_RestApi
     public class Startup
     {
         private readonly string _corsPolicyName = "_Origins";
-        public IConfiguration Configuration { get; private set; }
-        public ILifetimeScope AutofacContainer { get; private set; }
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IConfiguration _configuration;
+        private ILifetimeScope _autofacContainer;
 
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment webHostEnvironment)
         {
-            Configuration = configuration;
+            _configuration = configuration;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -38,16 +38,16 @@ namespace DailyPlanner_RestApi
                 options.SerializerSettings.Converters.Add(new StringEnumConverter());
             });
 
-            //services.AddCors(options =>
-            //{
-            //    options.AddPolicy(_corsPolicyName, builder =>
-            //    {
-            //        builder.WithOrigins(settings.AllowedOrigins)
-            //            .AllowAnyMethod()
-            //            .AllowAnyHeader()
-            //            .AllowCredentials();
-            //    });
-            //});
+            services.AddCors(options =>
+            {
+                options.AddPolicy(_corsPolicyName, builder =>
+                {
+                    builder.WithOrigins(settings.AllowedOrigins)
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials();
+                });
+            });
 
             //services.AddAuthentication()
             //.AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
@@ -64,13 +64,14 @@ namespace DailyPlanner_RestApi
             //    };
             //});
 
-            services.AddSerilog();
             services.AddCors();
+            services.AddSerilog();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
-            app.UseCustomExceptionHandler();
+            //todo fix UseCustomExceptionHandler
+            //app.UseCustomExceptionHandler();
 
             app.UseRouting();
             app.UseCors(_corsPolicyName);
@@ -84,7 +85,7 @@ namespace DailyPlanner_RestApi
 
             if (app is not null)
             {
-                AutofacContainer = app.ApplicationServices.GetAutofacRoot();
+                _autofacContainer = app.ApplicationServices.GetAutofacRoot();
             }
 
             loggerFactory.AddSerilog();
@@ -106,7 +107,7 @@ namespace DailyPlanner_RestApi
 
         private ApiSettings BuildOptions()
         {
-            return Configuration.Get<ApiSettings>();
+            return _configuration.Get<ApiSettings>();
         }
 
         #endregion
