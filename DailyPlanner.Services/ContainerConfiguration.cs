@@ -1,7 +1,10 @@
 ﻿using Autofac;
+using DailyPlanner.Data;
 using DailyPlanner.Services;
-using DailyPlanner.Services.Contracts;
+using DailyPlanner.Services.Facades;
 using DailyPlanner.Services.Mappers;
+using DailyPlanner.Services.Contracts;
+using DailyPlanner.Services.Facades.Contracts;
 
 
 namespace DailyPlanner.Service
@@ -18,10 +21,16 @@ namespace DailyPlanner.Service
             builder.RegisterInstance(settings);
             MapperFactory.Configure(builder);
 
+            //register service
+            builder.RegisterType<AuthService>().As<IAuthService>();
+            builder.RegisterType<HashService>().As<IHashService>();
+            builder.RegisterType<UserService>().As<IUserService>();
 
-           builder.RegisterType<AuthService>().As<IAuthService>();
+            //register facade
+            builder.RegisterType<AuthFacade>().As<IAuthFacade>();
 
-            Data.ContainerConfiguration.RegisterTypes(builder, settings.ConnectionStrings);
+
+            Data.ContainerConfiguration.RegisterTypes<DailyPlannerDataContext>(builder, settings.ConnectionStrings);
         }
     }
 }

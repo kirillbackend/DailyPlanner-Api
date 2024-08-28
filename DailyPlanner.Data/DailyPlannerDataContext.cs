@@ -12,13 +12,6 @@ namespace DailyPlanner.Data
         protected readonly IConfiguration Configuration;
         private readonly ConnectionSettings _settings;
 
-        public DailyPlannerDataContext(DbContextOptions<DailyPlannerDataContext> options, IConfiguration configuration, ConnectionSettings settings)
-            : base(options)
-        {
-            _settings = settings;
-            Configuration = configuration;
-        }
-
         public DailyPlannerDataContext(ConnectionSettings settings)
         {
             _settings = settings;
@@ -26,23 +19,20 @@ namespace DailyPlanner.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            //var connect = "Data Source=localhost; Database=DailyPlanner; User Id=Admin; Password=GhbynBuhs1; TrustServerCertificate=true;";
-            //options.UseSqlServer(connect);
-          options.UseSqlServer(Configuration.GetConnectionString(_settings.MSSQLDatabase));
+          options.UseSqlServer(Configuration.GetConnectionString(_settings.ConnectionString));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
-            modelBuilder.ApplyConfiguration(new SignUpModelMap());
+            //Todo check which is better
+            modelBuilder.ApplyConfiguration(new UserMap());
             //modelBuilder.ApplyConfiguration(new SignUpModelMap());
-
 
             //modelBuilder.ApplyConfigurationsFromAssembly(typeof(DailyPlannerDataContext).Assembly);
 
             //modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
 
-        public DbSet<SignUpModel> SignUpModels { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

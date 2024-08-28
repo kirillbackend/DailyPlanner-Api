@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DailyPlanner.Services.Dtos
+namespace DailyPlanner.Model
 {
-    public abstract class UserBaseDto
+    public class UserBase
     {
         [Required]
         public string Username { get; set; }

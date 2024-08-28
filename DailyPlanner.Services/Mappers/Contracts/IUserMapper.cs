@@ -3,7 +3,7 @@ using DailyPlanner.Services.Dtos;
 
 namespace DailyPlanner.Services.Mappers.Contracts
 {
-    public interface IAuthMapper : IMapper<SignUpModel, SignUpDto>
+    public interface IUserMapper : IMapper<User, UserDto>
     {
     }
 }

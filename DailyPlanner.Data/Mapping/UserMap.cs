@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DailyPlanner.Data.Mapping
 {
-    public class SignUpModelMap : IEntityTypeConfiguration<SignUpModel>
+    public class UserMap : IEntityTypeConfiguration<User>
     {
-        public void Configure(EntityTypeBuilder<SignUpModel> builder)
+        public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.HasKey(c => c.Id);
         }
