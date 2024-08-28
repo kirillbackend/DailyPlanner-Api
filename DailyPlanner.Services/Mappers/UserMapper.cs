@@ -5,13 +5,13 @@ using DailyPlanner.Services.Mappers.Contracts;
 
 namespace DailyPlanner.Services.Mappers
 {
-    public class AuthMapper : AbstractMapper<SignUpModel, SignUpDto>, IAuthMapper
+    public class UserMapper : AbstractMapper<User, UserDto>, IUserMapper
     {
         protected override AutoMapper.IMapper Configure()
         {
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<SignUpModel, SignUpDto > ().ReverseMap();
+                cfg.CreateMap<User, UserDto>().ReverseMap();
             });
             return config.CreateMapper();
         }

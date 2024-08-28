@@ -8,14 +8,15 @@ namespace DailyPlanner.Data
 {
     public class ContainerConfiguration
     {
-        public static void RegisterTypes(ContainerBuilder builder, ConnectionSettings settings)
+        public static void RegisterTypes<TContext>(ContainerBuilder builder, ConnectionSettings settings)
+            where TContext : DailyPlannerDataContext
         {
             if (settings == null) throw new ArgumentNullException(nameof(settings));
 
             builder.RegisterInstance(settings);
 
             builder.RegisterType<DailyPlannerDataContextManager>().As<IDailyPlannerDataContextManager>();
-            builder.RegisterType<AuthRepositories>().As<IAuthRepositories>();
+            builder.RegisterType<UserRepository>().As<IUserRepository>();
         }
     }
 }

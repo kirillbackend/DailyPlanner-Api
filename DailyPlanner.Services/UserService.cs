@@ -8,27 +8,26 @@ using Microsoft.Extensions.Logging;
 
 namespace DailyPlanner.Services
 {
-    public class AuthService : AbstractService, IAuthService
+    public class UserService : AbstractService, IUserService
     {
-
-        public AuthService(ILogger<AuthService> logger, IMapperFactory mapperFactory
+        public UserService(ILogger logger, IMapperFactory mapperFactory
             , IDailyPlannerDataContextManager dataContextManager)
             : base(logger, mapperFactory, dataContextManager)
         {
         }
 
-        public async Task SignUp(UserDto signUpDto)
+        public async Task<UserDto> GetUserByUserName(string userName)
         {
-            Logger.LogInformation("AuthService.SignUp started");
+            Logger.LogInformation("UserService.GetUserByUserName started");
 
             var repo = DataContextManager.CreateRepository<IUserRepository>();
-            var signUpMapper = MapperFactory.GetMapper<IUserMapper>();
+            var mapper = MapperFactory.GetMapper<IUserMapper>();
 
-            var user = signUpMapper.MapFromDto(signUpDto);
+            var user = await repo.GetUserByName(userName);
+            var userDto = mapper.MapToDto(user);
 
-            repo.Add(user);
-
-            Logger.LogInformation("AuthService.SignUp completed");
+            Logger.LogInformation("UserService.GetUserByUserName completed");
+            return userDto;
         }
     }
 }

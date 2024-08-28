@@ -4,6 +4,6 @@ namespace DailyPlanner.Services.Contracts
 {
     public interface IAuthService
     {
-        Task SignUp(SignUpDto signUpDto);
+        Task SignUp(UserDto userDto);
     }
 }

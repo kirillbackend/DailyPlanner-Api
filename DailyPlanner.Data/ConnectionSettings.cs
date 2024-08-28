@@ -3,6 +3,6 @@ namespace DailyPlanner.Service
 {
     public class ConnectionSettings
     {
-        public string MSSQLDatabase { get; set; }
+        public string ConnectionString { get; set; }
     }
 }
