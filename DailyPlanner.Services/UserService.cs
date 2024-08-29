@@ -1,5 +1,6 @@
 ﻿using DailyPlanner.Data.Contracts;
 using DailyPlanner.Data.Repositories.Contracts;
+using DailyPlanner.Localization;
 using DailyPlanner.Service;
 using DailyPlanner.Services.Contracts;
 using DailyPlanner.Services.Dtos;

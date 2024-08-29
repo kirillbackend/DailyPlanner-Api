@@ -31,6 +31,7 @@ namespace DailyPlanner.Service
 
 
             Data.ContainerConfiguration.RegisterTypes<DailyPlannerDataContext>(builder, settings.ConnectionStrings);
+            Localization.ContainerConfiguration.RegisterTypes(builder);
         }
     }
 }

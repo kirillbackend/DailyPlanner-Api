@@ -1,6 +1,7 @@
 ﻿using DailyPlanner.Services.Mappers.Contracts;
 using Microsoft.Extensions.Logging;
 using DailyPlanner.Data.Contracts;
+using DailyPlanner.Localization;
 
 namespace DailyPlanner.Service
 {
