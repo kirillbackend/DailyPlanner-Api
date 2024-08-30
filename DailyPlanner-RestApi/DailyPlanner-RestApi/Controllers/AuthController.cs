@@ -24,13 +24,13 @@ namespace DailyPlanner_RestApi.Controllers
         {
             try
             {
+                Logger.LogInformation("AuthController.SingUp started");
+
                 if (!ModelState.IsValid)
                 {
                     Logger.LogWarning($"AuthController.SingUp failed: {ModelState}");
                     return BadRequest(ModelState);
                 }
-
-                Logger.LogInformation("AuthController.SingUp started");
 
                 await _authFacade.SingUp(new SignUpDto()
                 {
@@ -48,54 +48,34 @@ namespace DailyPlanner_RestApi.Controllers
             }
         }
 
-        //[HttpPost]
-        //[Route("login")]
-        //public async Task<IActionResult> Login([FromBody] LoginModel model)
-        //{
-        //    try
-        //    {
-        //        if (!ModelState.IsValid)
-        //        {
-        //            Logger.LogWarning($"AuthController.Login failed: {ModelState}");
-        //            return BadRequest(ModelState);
-        //        }
+        [HttpPost]
+        [Route("login")]
+        public async Task<IActionResult> LogIn(LoginModel loginModel)
+        {
+            try
+            {
+                Logger.LogInformation("AuthController.LogIn started");
 
-        //        var tokenString = _authFacade.Login(new LoginDto() 
-        //        {
-        //            Username = model.Username,
-        //            Password = model.Password
-        //        });
+                if (!ModelState.IsValid)
+                {
+                    Logger.LogWarning($"AuthController.LogIn failed: {ModelState}");
+                    return BadRequest(ModelState);
+                }
 
-        //        Logger.LogDebug($"AuthController.Login started");
-        //        return Ok(new AuthenticatedResponse { Token = tokenString });
-        //    }
-        //    catch (ValidationException ex)
-        //    {
-        //        Logger.LogInformation("AuthController.Login completed; invalid request");
-        //        return BadRequest(ex);
-        //    }
+                var token = await _authFacade.LogIn(new LoginDto()
+                {
+                    Username = loginModel.Username,
+                    Password = loginModel.Password,
+                });
 
-            //if (user.Password == _settings.Password)
-            //{
-            //    var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_settings.Auth.Secret));
-            //    var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
-            //    var tokeOptions = new JwtSecurityToken(
-            //        issuer: "https://localhost:5001",
-            //        audience: "https://localhost:5001",
-            //        claims: new List<Claim>(),
-            //        expires: DateTime.Now.AddMinutes(_settings.Auth.TokenExpireMinutes),
-            //        signingCredentials: signinCredentials
-            //    );
-            //    var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
-
-            //    Logger.LogDebug($"AuthController.Login({user}) completle tokenString = {tokenString}");
-            //    return Ok(new AuthenticatedResponse { Token = tokenString });
-            //}
-            //else
-            //{
-            //    Logger.LogWarning($"AuthController.Login({user}) invalid user data");
-            //    return Unauthorized();
-            //}
-        
+                Logger.LogInformation("AuthController.LogIn completed");
+                return Ok(token);
+            }
+            catch (ValidationException ex)
+            {
+                Logger.LogWarning("AuthController.LogIn completed; invalid request");
+                return BadRequest(ex);
+            }
+        }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using DailyPlanner.Data.Contracts;
 using DailyPlanner.Data.Repositories.Contracts;
-using DailyPlanner.Localization;
 using DailyPlanner.Service;
 using DailyPlanner.Services.Contracts;
 using DailyPlanner.Services.Dtos;
@@ -11,7 +10,7 @@ namespace DailyPlanner.Services
 {
     public class UserService : AbstractService, IUserService
     {
-        public UserService(ILogger logger, IMapperFactory mapperFactory
+        public UserService(ILogger<UserService> logger, IMapperFactory mapperFactory
             , IDailyPlannerDataContextManager dataContextManager)
             : base(logger, mapperFactory, dataContextManager)
         {

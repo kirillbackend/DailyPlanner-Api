@@ -5,7 +5,7 @@ using DailyPlanner.Services.Facades;
 using DailyPlanner.Services.Mappers;
 using DailyPlanner.Services.Contracts;
 using DailyPlanner.Services.Facades.Contracts;
-
+using DailyPlanner.Localization;
 
 namespace DailyPlanner.Service
 {
@@ -21,6 +21,11 @@ namespace DailyPlanner.Service
             builder.RegisterInstance(settings);
             MapperFactory.Configure(builder);
 
+            Data.ContainerConfiguration.RegisterTypes<DailyPlannerDataContext>(builder, settings.ConnectionStrings);
+            Localization.ContainerConfiguration.RegisterTypes(builder);
+
+            builder.RegisterType<ContextLocator>().AsSelf().InstancePerLifetimeScope();
+
             //register service
             builder.RegisterType<AuthService>().As<IAuthService>();
             builder.RegisterType<HashService>().As<IHashService>();
@@ -28,10 +33,6 @@ namespace DailyPlanner.Service
 
             //register facade
             builder.RegisterType<AuthFacade>().As<IAuthFacade>();
-
-
-            Data.ContainerConfiguration.RegisterTypes<DailyPlannerDataContext>(builder, settings.ConnectionStrings);
-            Localization.ContainerConfiguration.RegisterTypes(builder);
         }
     }
 }

@@ -120,7 +120,16 @@
   <data name="HashIsNull" xml:space="preserve">
     <value>Hash is null</value>
   </data>
+  <data name="InvalidPassword" xml:space="preserve">
+    <value>Invalid password</value>
+  </data>
   <data name="PasswordIsNull" xml:space="preserve">
     <value>Password is null</value>
+  </data>
+  <data name="UserRegistered" xml:space="preserve">
+    <value>User has already been registered</value>
+  </data>
+  <data name="UserWasNotFound" xml:space="preserve">
+    <value>User was not found</value>
   </data>
 </root>

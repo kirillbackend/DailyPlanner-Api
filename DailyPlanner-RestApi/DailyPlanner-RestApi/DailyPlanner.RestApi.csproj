@@ -36,8 +36,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\DailyPlanner.Enums\DailyPlanner.Enums.csproj" />
-    <ProjectReference Include="..\..\DailyPlanner.Model\DailyPlanner.Model.csproj" />
     <ProjectReference Include="..\..\DailyPlanner.Services\DailyPlanner.Services.csproj" />
   </ItemGroup>
 

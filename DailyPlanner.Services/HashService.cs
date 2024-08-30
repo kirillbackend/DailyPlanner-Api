@@ -18,6 +18,7 @@ namespace DailyPlanner.Services
             _logger = logger;
         }
 
+
         public async Task<string> CreateHashPassword(string password)
         {
             _logger.LogInformation("HashService.CreateHashPassword started");
@@ -57,7 +58,6 @@ namespace DailyPlanner.Services
 
             if (hashPassword == null)
             {
-
                 _logger.LogWarning("HashService.VerifyHashedPassword failed. Hash is null.");
                 throw new ArgumentNullException("Hash is null.", resourceProvider.Get("HashIsNull"));
             }

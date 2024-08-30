@@ -6,9 +6,9 @@ namespace DailyPlanner.Data
 {
     public class DailyPlannerDataContextManager : IDailyPlannerDataContextManager
     {
-        private readonly object _contextLock = new object();
         private Dictionary<string, DailyPlannerDataContext> _contexts = new Dictionary<string, DailyPlannerDataContext>();
-        private ConnectionSettings _connectionSettings;
+        private readonly object _contextLock = new object();
+        private readonly ConnectionSettings _connectionSettings;
         private readonly ILifetimeScope _container;
 
         public DailyPlannerDataContextManager(ILifetimeScope container, ConnectionSettings connectionSettings)

@@ -4,7 +4,7 @@ using System.Resources;
 
 namespace DailyPlanner.Localization
 {
-    public class ResourceProvider : IResourceProvider
+    internal class ResourceProvider : IResourceProvider
     {
         private CultureInfo _culture;
         private ResourceManager _resourceManager;

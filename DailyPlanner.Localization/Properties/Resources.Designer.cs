@@ -70,11 +70,38 @@ namespace DailyPlanner.Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid password.
+        /// </summary>
+        internal static string InvalidPassword {
+            get {
+                return ResourceManager.GetString("InvalidPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password is null.
         /// </summary>
         internal static string PasswordIsNull {
             get {
                 return ResourceManager.GetString("PasswordIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User has already been registered.
+        /// </summary>
+        internal static string UserRegistered {
+            get {
+                return ResourceManager.GetString("UserRegistered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User was not found.
+        /// </summary>
+        internal static string UserWasNotFound {
+            get {
+                return ResourceManager.GetString("UserWasNotFound", resourceCulture);
             }
         }
     }

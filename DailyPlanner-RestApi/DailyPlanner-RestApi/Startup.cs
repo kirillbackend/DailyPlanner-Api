@@ -1,10 +1,12 @@
 ﻿using Autofac.Extensions.DependencyInjection;
-using DailyPlanner_RestApi.Middlewares;
 using Newtonsoft.Json.Converters;
 using DailyPlanner.Service;
 using Autofac;
 using Serilog;
-using Azure.Identity;
+using DailyPlanner_RestApi.ActionFilters;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 
 namespace DailyPlanner_RestApi
@@ -28,10 +30,7 @@ namespace DailyPlanner_RestApi
 
             services.AddControllers(options =>
             {
-                //todo: add action filters
-                //settings.Filters.Add<LocaleActionFilter>();
-
-                //settings.Filters.Add<OrganizationActionFilter>();
+                options.Filters.Add<LocaleActionFilter>();
             })
             .AddNewtonsoftJson(options =>
             {
@@ -49,20 +48,20 @@ namespace DailyPlanner_RestApi
                 });
             });
 
-            //services.AddAuthentication()
-            //.AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
-            //{
-            //    options.TokenValidationParameters = new TokenValidationParameters
-            //    {
-            //        ValidateIssuer = true,
-            //        ValidateAudience = true,
-            //        ValidateLifetime = true,
-            //        ValidateIssuerSigningKey = true,
-            //        ValidIssuer = "https://localhost:5001",
-            //        ValidAudience = "https://localhost:5001",
-            //        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(settings.Auth.Secret))
-            //    };
-            //});
+            services.AddAuthentication()
+            .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = "https://localhost:5001",
+                    ValidAudience = "https://localhost:5001",
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(settings.Auth.Secret))
+                };
+            });
 
             services.AddCors();
             services.AddSerilog();
@@ -96,11 +95,8 @@ namespace DailyPlanner_RestApi
             var settings = BuildOptions();
             ContainerConfiguration.RegisterTypes(builder, settings);
 
-
-            //todo add action filters
             // register filters
-            //builder.RegisterType<OrganizationActionFilter>().AsSelf();
-            //builder.RegisterType<ExceptionHandler>().AsSelf();
+            builder.RegisterType<LocaleActionFilter>().AsSelf();
         }
 
         #region private metods
