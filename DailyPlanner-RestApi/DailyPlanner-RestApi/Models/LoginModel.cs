@@ -1,6 +1,7 @@
 ﻿namespace DailyPlanner.Model
 {
-    public class SignUpModel : UserBase
+    public class LoginModel : UserBaseModel
     {
+
     }
 }

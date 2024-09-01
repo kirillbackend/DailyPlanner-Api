@@ -1,8 +1,8 @@
-﻿using DailyPlanner.Localization;
+﻿using System.Text;
+using DailyPlanner.Localization;
 using DailyPlanner.Services.Contracts;
 using Microsoft.Extensions.Logging;
 using System.Security.Cryptography;
-using System.Text;
 
 namespace DailyPlanner.Services
 {
@@ -17,7 +17,6 @@ namespace DailyPlanner.Services
             _contextLocator = contextLocator;
             _logger = logger;
         }
-
 
         public async Task<string> CreateHashPassword(string password)
         {

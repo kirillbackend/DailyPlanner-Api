@@ -1,11 +1,11 @@
 ﻿using Autofac;
 using DailyPlanner.Data;
 using DailyPlanner.Services;
+using DailyPlanner.Localization;
 using DailyPlanner.Services.Facades;
 using DailyPlanner.Services.Mappers;
 using DailyPlanner.Services.Contracts;
 using DailyPlanner.Services.Facades.Contracts;
-using DailyPlanner.Localization;
 
 namespace DailyPlanner.Service
 {

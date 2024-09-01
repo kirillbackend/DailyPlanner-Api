@@ -2,7 +2,7 @@
 
 namespace DailyPlanner.Model
 {
-    public class UserBase
+    public class UserBaseModel
     {
         [Required]
         public string Username { get; set; }

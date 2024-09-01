@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DailyPlanner_RestApi.Controllers
 {
@@ -14,6 +15,14 @@ namespace DailyPlanner_RestApi.Controllers
         public IActionResult Get()
         {
             return Ok("pass");
+        }
+
+        [HttpGet]
+        [Authorize]
+        [Route("{id}")]
+        public IActionResult Get(int id)
+        {
+            return Ok(id);
         }
     }
 }
