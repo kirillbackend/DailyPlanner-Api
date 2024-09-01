@@ -27,6 +27,21 @@ namespace DailyPlanner.Data
             return _container.Resolve<T>(new TypedParameter(typeof(DailyPlannerDataContext), GetDataContext(id)));
         }
 
+        public void CloseConnections()
+        {
+            foreach (DailyPlannerDataContext value in _contexts.Values)
+            {
+                value.Dispose();
+            }
+
+            _contexts.Clear();
+        }
+
+        public void Dispose()
+        {
+            CloseConnections();
+        }
+
         #region private metods
 
         private DailyPlannerDataContext GetDataContext(string id = "default")

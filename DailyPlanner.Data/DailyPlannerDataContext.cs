@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Configuration;
 using DailyPlanner.Model;
 using DailyPlanner.Service;
-using DailyPlanner.Data.Mapping;
 using System.Reflection;
 
 namespace DailyPlanner.Data
@@ -18,25 +17,13 @@ namespace DailyPlanner.Data
             _settings = settings;
         }
 
-        //public DailyPlannerDataContext(ConnectionSettings settings)
-        //{
-        //    _settings = settings;
-        //}
-
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlServer(Configuration.GetConnectionString(_settings.ConnectionString));
-            //options.UseSqlServer(_configuration.GetConnectionString("ConnectionString"));
+            options.UseSqlServer(Configuration.GetConnectionString("ConnectionString"));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //Todo check which is better
-            //modelBuilder.ApplyConfiguration(new UserMap());
-            //modelBuilder.ApplyConfiguration(new SignUpModelMap());
-
-            //modelBuilder.ApplyConfigurationsFromAssembly(typeof(DailyPlannerDataContext).Assembly);
-
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
 

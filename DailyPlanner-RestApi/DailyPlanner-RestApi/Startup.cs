@@ -7,6 +7,7 @@ using DailyPlanner_RestApi.ActionFilters;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace DailyPlanner_RestApi
