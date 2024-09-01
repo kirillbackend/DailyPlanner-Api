@@ -29,15 +29,15 @@ namespace DailyPlanner.Services.Facades
             Logger.LogInformation("AuthFacade.SingUp started");
 
             var resourceProvider = _contextLocator.GetContext<LocaleContext>().ResourceProvider;
-            var userDto = await _userService.GetUserByUserName(singUpDto.Username);
+            //var userDto = await _userService.GetUserByUserName(singUpDto.Username);
 
-            if (userDto != null)
-            {
-                Logger.LogWarning($"AuthFacade.SingUp a user with that name has already been registered. Username : {singUpDto.Username}");
-                throw new ValidationException("User has already been registered.", resourceProvider.Get("UserRegistered"));
-            }
+            //if (userDto != null)
+            //{
+            //    Logger.LogWarning($"AuthFacade.SingUp a user with that name has already been registered. Username : {singUpDto.Username}");
+            //    throw new ValidationException("User has already been registered.", resourceProvider.Get("UserRegistered"));
+            //}
             
-            userDto = new UserDto()
+            var userDto = new UserDto()
             {
                 Name = singUpDto.Username,
                 Password = await _hashService.CreateHashPassword(singUpDto.Password)

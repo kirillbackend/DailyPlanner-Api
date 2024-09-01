@@ -12,25 +12,32 @@ namespace DailyPlanner.Data
         protected readonly IConfiguration Configuration;
         private readonly ConnectionSettings _settings;
 
-        public DailyPlannerDataContext(ConnectionSettings settings)
+        public DailyPlannerDataContext(IConfiguration configuration, ConnectionSettings settings)
         {
+            Configuration = configuration;
             _settings = settings;
         }
 
+        //public DailyPlannerDataContext(ConnectionSettings settings)
+        //{
+        //    _settings = settings;
+        //}
+
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-          options.UseSqlServer(Configuration.GetConnectionString(_settings.ConnectionString));
+            options.UseSqlServer(Configuration.GetConnectionString(_settings.ConnectionString));
+            //options.UseSqlServer(_configuration.GetConnectionString("ConnectionString"));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //Todo check which is better
-            modelBuilder.ApplyConfiguration(new UserMap());
+            //modelBuilder.ApplyConfiguration(new UserMap());
             //modelBuilder.ApplyConfiguration(new SignUpModelMap());
 
             //modelBuilder.ApplyConfigurationsFromAssembly(typeof(DailyPlannerDataContext).Assembly);
 
-            //modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
 
         public DbSet<User> Users { get; set; }

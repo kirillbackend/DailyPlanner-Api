@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using DailyPlanner.Data.Contracts;
 using DailyPlanner.Service;
+using Microsoft.Extensions.Configuration;
 
 namespace DailyPlanner.Data
 {
@@ -10,11 +11,13 @@ namespace DailyPlanner.Data
         private readonly object _contextLock = new object();
         private readonly ConnectionSettings _connectionSettings;
         private readonly ILifetimeScope _container;
+        protected readonly IConfiguration _configuration;
 
-        public DailyPlannerDataContextManager(ILifetimeScope container, ConnectionSettings connectionSettings)
+        public DailyPlannerDataContextManager(ILifetimeScope container, ConnectionSettings connectionSettings, IConfiguration configuration)
         {
             _container = container;
             _connectionSettings = connectionSettings;
+            _configuration = configuration;
         }
 
         public T CreateRepository<T>(string id = "default")
@@ -35,7 +38,7 @@ namespace DailyPlanner.Data
 
                 if (!_contexts.ContainsKey(contextKey))
                 {
-                    _contexts[contextKey] = new DailyPlannerDataContext(_connectionSettings);
+                    _contexts[contextKey] = new DailyPlannerDataContext(_configuration, _connectionSettings);
                 }
 
                 return _contexts[contextKey];
