@@ -1,9 +1,10 @@
-﻿
+﻿using DailyPlanner.Data;
+
 namespace DailyPlanner.Service
 {
     public class DailyPlannerServiceSettings
     {
-        public ConnectionSettings ConnectionStrings { get; set; }
+        public DbConnectionSettings ConnectionStrings { get; set; }
         public JwtSettings Auth { get; set; }
     }
 

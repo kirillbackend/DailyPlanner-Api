@@ -1,5 +1,4 @@
 ﻿using Autofac;
-using DailyPlanner.Data;
 using DailyPlanner.Services;
 using DailyPlanner.Localization;
 using DailyPlanner.Services.Facades;
@@ -21,11 +20,6 @@ namespace DailyPlanner.Service
             builder.RegisterInstance(settings);
             MapperFactory.Configure(builder);
 
-            Data.ContainerConfiguration.RegisterTypes<DailyPlannerDataContext>(builder, settings.ConnectionStrings);
-            Localization.ContainerConfiguration.RegisterTypes(builder);
-
-            builder.RegisterType<ContextLocator>().AsSelf().InstancePerLifetimeScope();
-
             //register service
             builder.RegisterType<AuthService>().As<IAuthService>();
             builder.RegisterType<HashService>().As<IHashService>();
@@ -33,6 +27,11 @@ namespace DailyPlanner.Service
 
             //register facade
             builder.RegisterType<AuthFacade>().As<IAuthFacade>();
+
+            Localization.ContainerConfiguration.RegisterTypes(builder);
+            builder.RegisterType<ContextLocator>().AsSelf().InstancePerLifetimeScope();
+
+            Data.ContainerConfiguration.RegisterTypes(builder, settings.ConnectionStrings);
         }
     }
 }

@@ -1,28 +1,25 @@
 ﻿using Autofac.Extensions.DependencyInjection;
 using Newtonsoft.Json.Converters;
-using DailyPlanner.Service;
 using Autofac;
 using Serilog;
 using DailyPlanner_RestApi.ActionFilters;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Microsoft.EntityFrameworkCore;
-
 
 namespace DailyPlanner_RestApi
 {
     public class Startup
     {
-        private readonly string _corsPolicyName = "_Origins";
+        public readonly string _corsPolicyName = "_Origins";
         private readonly IWebHostEnvironment _webHostEnvironment;
-        private readonly IConfiguration _configuration;
-        private ILifetimeScope _autofacContainer;
+        public IConfiguration Configuration { get; private set; }
 
-        public Startup(IConfiguration configuration, IWebHostEnvironment webHostEnvironment)
+        public ILifetimeScope AutofacContainer { get; private set; }
+
+        public Startup(IConfiguration configuration)
         {
-            _configuration = configuration;
-            _webHostEnvironment = webHostEnvironment;
+            Configuration = configuration;
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -85,7 +82,7 @@ namespace DailyPlanner_RestApi
 
             if (app is not null)
             {
-                _autofacContainer = app.ApplicationServices.GetAutofacRoot();
+                AutofacContainer = app.ApplicationServices.GetAutofacRoot();
             }
 
             loggerFactory.AddSerilog();
@@ -93,8 +90,8 @@ namespace DailyPlanner_RestApi
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            var settings = BuildOptions();
-            ContainerConfiguration.RegisterTypes(builder, settings);
+            var options = BuildOptions();
+            ContainerConfiguration.ResisterTypes(builder, options);
 
             // register filters
             builder.RegisterType<LocaleActionFilter>().AsSelf();
@@ -104,7 +101,7 @@ namespace DailyPlanner_RestApi
 
         private ApiSettings BuildOptions()
         {
-            return _configuration.Get<ApiSettings>();
+            return Configuration.Get<ApiSettings>();
         }
 
         #endregion

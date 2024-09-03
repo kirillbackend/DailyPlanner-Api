@@ -14,7 +14,7 @@ namespace DailyPlanner.Services
         private readonly ContextLocator _contextLocator;
 
         public UserService(ILogger<UserService> logger, IMapperFactory mapperFactory, ContextLocator contextLocator
-            , IDailyPlannerDataContextManager dataContextManager)
+            , IDataContextManager dataContextManager)
             : base(logger, mapperFactory, dataContextManager)
         {
             _contextLocator = contextLocator;
