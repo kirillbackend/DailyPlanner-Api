@@ -17,7 +17,7 @@ namespace DailyPlanner.Services
         private readonly DailyPlannerServiceSettings _dailyPlannerServiceSettings;
 
         public AuthService(ILogger<AuthService> logger, IMapperFactory mapperFactory, DailyPlannerServiceSettings dailyPlannerServiceSettings
-            , IDailyPlannerDataContextManager dataContextManager)
+            , IDataContextManager dataContextManager)
             : base(logger, mapperFactory, dataContextManager)
         {
             _dailyPlannerServiceSettings = dailyPlannerServiceSettings;

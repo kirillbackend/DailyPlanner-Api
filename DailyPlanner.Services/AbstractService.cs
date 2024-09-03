@@ -10,9 +10,9 @@ namespace DailyPlanner.Service
 
         public IMapperFactory MapperFactory { get; }
 
-        public IDailyPlannerDataContextManager DataContextManager { get; }
+        public IDataContextManager DataContextManager { get; }
 
-        public AbstractService(ILogger logger, IMapperFactory mapperFactory, IDailyPlannerDataContextManager dataContextManager)
+        public AbstractService(ILogger logger, IMapperFactory mapperFactory, IDataContextManager dataContextManager)
         {
             Logger = logger;
             MapperFactory = mapperFactory;
